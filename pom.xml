@@ -38,7 +38,7 @@
     <spring-cloud-bom.version>2024.0.1</spring-cloud-bom.version>
     <cql2pgjson.version>35.4.0</cql2pgjson.version>
     <folio-spring-cql.version>9.1.0</folio-spring-cql.version>
-    <applications-poc-tools.version>3.1.0-SNAPSHOT</applications-poc-tools.version>
+    <applications-poc-tools.version>3.0.0</applications-poc-tools.version>
     <folio-java-checkstyle.version>1.1.0</folio-java-checkstyle.version>
     <semver4j.version>5.7.0</semver4j.version>
     <jackson-bom.version>2.17.2</jackson-bom.version>
@@ -328,6 +328,16 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <version>6.4.6</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-aspects</artifactId>
+      <version>6.4.6</version>
+    </dependency>
   </dependencies>
 
   <dependencyManagement>
@@ -561,6 +571,26 @@
         </executions>
       </plugin>
 
+      <plugin>
+        <groupId>org.owasp</groupId>
+        <artifactId>dependency-check-maven</artifactId>
+        <version>12.1.1</version>
+        <configuration>
+          <formats>
+            <format>JSON</format>
+            <format>HTML</format>
+          </formats>
+          <outputDirectory>${project.basedir}/v-reports</outputDirectory>
+          <nvdApiKey>d20dcd2a-d552-46ad-bec9-a68625f30ab7</nvdApiKey>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
